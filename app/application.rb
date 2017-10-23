@@ -3,7 +3,7 @@ require 'date'
 class Application
 
   @@items = ["Hat", "Bat", "Mat"]
-  
+
   def call(env)
     resp = Rack::Response.new
     req = Rack::Request.new(env)
