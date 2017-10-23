@@ -2,7 +2,7 @@ require 'date'
 
 class Application
 
-  @@items = ["Hat", "Bat", "Mat"]
+  @@items = ["Apple", "Oranges", "Grapes"]
 
   def call(env)
     resp = Rack::Response.new
