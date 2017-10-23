@@ -1,15 +1,15 @@
 require 'date'
 
 class Application
+
+  @@items = ["Hat", "Bat", "Mat"]
+  
   def call(env)
     resp = Rack::Response.new
+    req = Rack::Request.new(env)
 
-    hourNow = Time.now.hour
-
-    if hourNow < 12
-      resp.write "Good Morning!"
-    else
-      resp.write "Good Afternoon!"
+    @@items.each do |item|
+      resp.write "#{item}\n"
     end
 
     resp.finish
