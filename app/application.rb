@@ -8,8 +8,20 @@ class Application
     resp = Rack::Response.new
     req = Rack::Request.new(env)
 
-    @@items.each do |item|
-      resp.write "#{item}\n"
+    if req.path.match(/items/)
+      @@items.each do |item|
+        resp.write "#{item}\n"
+      end
+    elsif req.path.match(/search/)
+      search_term = req.params["q"]
+
+      if @@items.include?(search_term)
+        resp.write "#{search_term} is one of our items"
+      else
+        resp.write "Couldn't find #{search_term}"
+      end
+    else
+      resp.write "Path Not Found"
     end
 
     resp.finish
